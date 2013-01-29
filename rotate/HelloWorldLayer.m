@@ -35,6 +35,7 @@
 	// Apple recommends to re-assign "self" with the "super" return value
 	if( (self=[super init])) {
 		
+        angle = 900;
 		// create and initialize a Label
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
 
@@ -46,8 +47,27 @@
 		
 		// add the label as a child to this Layer
 		[self addChild: label];
+        
+        CCSprite* img = [CCSprite spriteWithFile:@"Icon-72.png"];
+        [img setPosition:CGPointMake(size.width/2, size.height/2)];
+        [self addChild:img z:1 tag:66];
+        
+        [self schedule:@selector(good) interval:0.5f];
 	}
 	return self;
+}
+
+-(void)good{
+    CCSprite* img = (CCSprite*)[self getChildByTag:66];
+    CCRotateBy* rotate = [CCRotateBy actionWithDuration:0.5f angle:angle];
+    if (angle > 0) {
+        angle -= 20;
+    }else {
+        angle = 900;
+    }
+    [img runAction:rotate];
+    NSLog(@"good");
+    
 }
 
 // on "dealloc" you need to release all your retained objects

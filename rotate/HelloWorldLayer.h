@@ -13,6 +13,7 @@
 // HelloWorldLayer
 @interface HelloWorldLayer : CCLayer
 {
+    int angle;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
